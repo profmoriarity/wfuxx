@@ -1,5 +1,5 @@
 # wfuxx
-web-based-fuzzer. A simple PHP script that you can host on your server and access fuff, gobuster from your browser.
+A simple PHP script that you can host on your server and access fuff, gobuster from your browser.
 
 # Setup
 
