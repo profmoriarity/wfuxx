@@ -12,6 +12,10 @@ wget https://raw.githubusercontent.com/profmoriarity/wfuxx/master/wfuxx.php -O /
 ```
 
 
+
+![ScreenShot](https://raw.githubusercontent.com/profmoriarity/wfuxx/master/wfuxx.jpg)
+
+
 ## todo
 1. take lists dynamically from a directory.
 2. enable saving output for future use.
