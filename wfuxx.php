@@ -68,13 +68,13 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-sm">filters</span>
   </div>
-  <input type="text" class="form-control" name="filter" value="200,301,302" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  <input type="text" class="form-control" name="filter" value="200,301,302,403" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
  </div>
  <div class="form-group input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-sm">exclude</span>
   </div>
-  <input type="text" class="form-control" name="exclude" value="400,404,403,500" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  <input type="text" class="form-control" name="exclude" value="400,404" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
  </div>
  
 
@@ -103,7 +103,7 @@ if(isset($target) && $tool=='ffuf'){
 
  while (@ ob_end_flush()); // end all output buffers if any
 
- $cmd = 'ffuf -s -w '.$list.' -u '.$target.'/FUZZ -recursion-depth 2';
+ $cmd = 'ffuf -s -w '.$list.' -u '.$target.'/FUZZ -recursion-depth 2 -of html -o '.$target.'.html';
 $cmd = $cmd.' -t '.$thread.'';
 
 if(isset($exclude)){
@@ -116,7 +116,7 @@ if(isset($filter)){
 if(isset($ext) && $ext !=  ''){
   $cmd = $cmd." -e ".$ext;
 }
-echo "<script>alert('$cmd')</script>";
+echo "<script>alert('$cmd output is at $target .html')</script>";
 $proc = popen($cmd, 'r');
 //$proc='';
 
