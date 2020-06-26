@@ -41,17 +41,17 @@
   
   <select class="custom-select" id="inputGroupSelect01" name="list">
     <option selected>Choose Wordlist</option>
-<option value="/lists/large-files.txt">/lists/large-files.txt</option>
-<option value="/lists/medium-files.txt">/lists/medium-files.txt</option>
-<option value="/lists/quickhits-2000.txt">/lists/quickhits-2000.txt</option>
-<option value="/lists/large-dir.txt">/lists/large-dir.txt</option>
-<option value="/lists/subdomain-prefixes.txt">/lists/subdomain-prefixes.txt</option>
-<option value="/lists/nmap-1000.txt">/lists/nmap-1000.txt</option>
-<option value="/lists/medium-words.txt">/lists/medium-words.txt</option>
-<option value="/lists/ffuf.txt">/lists/ffuf.txt</option>
-<option value="/lists/large-words.txt">/lists/large-words.txt</option>
-<option value="/lists/test.txt">/lists/test.txt</option>
-<option value="/lists/medium-dir.txt">/lists/medium-dir.txt</option>
+<option value="./var/www/html/lists/large-files.txt">/lists/large-files.txt</option>
+<option value="./var/www/html/lists/medium-files.txt">/lists/medium-files.txt</option>
+<option value="./var/www/html/lists/quickhits-2000.txt">/lists/quickhits-2000.txt</option>
+<option value="./var/www/html/lists/large-dir.txt">/lists/large-dir.txt</option>
+<option value="./var/www/html/lists/subdomain-prefixes.txt">/lists/subdomain-prefixes.txt</option>
+<option value="./var/www/html/lists/nmap-1000.txt">/lists/nmap-1000.txt</option>
+<option value="./var/www/html/lists/medium-words.txt">/lists/medium-words.txt</option>
+<option value="./var/www/html/lists/ffuf.txt">/lists/ffuf.txt</option>
+<option value="./var/www/html/lists/large-words.txt">/lists/large-words.txt</option>
+<option value="./var/www/html/lists/test.txt">/lists/test.txt</option>
+<option value="./var/www/html/lists/medium-dir.txt">/lists/medium-dir.txt</option>
   </select>
 </div>
 <div class="form-group input-group input-group-sm mb-3">
@@ -68,13 +68,13 @@
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-sm">filters</span>
   </div>
-  <input type="text" class="form-control" name="filter" value="200,301,302" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  <input type="text" class="form-control" name="filter" value="200,301,302,403" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
  </div>
  <div class="form-group input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-sm">exclude</span>
   </div>
-  <input type="text" class="form-control" name="exclude" value="400,404,403,500" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+  <input type="text" class="form-control" name="exclude" value="400,404" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
  </div>
  
 
@@ -94,7 +94,7 @@
     <?php
 error_reporting(0);
 
-if(isset($_REQUEST['zing']) && $_REQUEST['zing']=='weakpass') {
+if(isset($_REQUEST['zing']) && $_REQUEST['zing']=='m4d') {
     
 extract($_REQUEST);
 $n=explode('/',$target)[2].".txt";
@@ -103,7 +103,7 @@ if(isset($target) && $tool=='ffuf'){
 
  while (@ ob_end_flush()); // end all output buffers if any
 
- $cmd = 'ffuf -s -w '.$list.' -u '.$target.'/FUZZ';
+ $cmd = 'ffuf -s -w '.$list.' -u '.$target.'/FUZZ -recursion-depth 2 -of html -o '.$target.'.html';
 $cmd = $cmd.' -t '.$thread.'';
 
 if(isset($exclude)){
